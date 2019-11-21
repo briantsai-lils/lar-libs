@@ -14,9 +14,5 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: ./gradlew assembleRelease
-    - name: GitHub Action for Maven
-      uses: LucaFeger/action-maven-cli@1.1.0      
-    - name: publish to Github Packages
-      run: ./mvn deploy -Dregistry=https://maven.pkg.github.com/briantsai-lils -Dtoken=GH_TOKEN
+      run: ./gradlew assembleRelease publish
        
