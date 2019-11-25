@@ -19,7 +19,8 @@ allprojects {
     }
 }
 apply plugin: 'com.android.library'
-apply plugin: 'digital.wup.android-maven-publish'
+//apply plugin: 'digital.wup.android-maven-publish'
+apply plugin: 'maven-publish'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -77,16 +78,34 @@ android {
                 url = uri("https://maven.pkg.github.com/briantsai-lils/lar-libs")
                 credentials {
                     username = "briantsai-lils"
-                    password = "9d8c32e04749aa80c31d8de663aa5f26cdeeef44"
+                    password = "e4248d079addb74a8e8ea8dd09935f4dde334a74"
                 }
             }
         }
         publications {
-            mavenAar(MavenPublication) {
-            groupId = "com.lowes.ar"
-            artifactId = "lar-libs"
-            version = "0.1.1-beta"
-            from components.android
+            lowesar(MavenPublication) {
+                artifact('build/outputs/aar/lar-libs.aar')
+                groupId = "com.lowes.ar"
+                artifactId = "LowesAR"
+                version = "0.0.2-beta"
+            }
+            arcoreclient(MavenPublication) {
+                artifact('libs/arcore_client.aar')
+                groupId = "com.lowes.ar"
+                artifactId = "arcore-client-lib"
+                version = "0.0.2-beta"
+            }
+            unityandroid(MavenPublication) {
+                artifact('libs/unityandroidpermissions.aar')
+                groupId = "com.lowes.ar"
+                artifactId = "unity-android-permission-lib"
+                version = "0.0.2-beta"
+            }
+            unityarcore(MavenPublication) {
+                artifact('libs/UnityARCore.aar')
+                groupId = "com.lowes.ar"
+                artifactId = "unity-arcore-lib"
+                version = "0.0.2-beta"
             }
         }
     }
